@@ -34,3 +34,8 @@ next-env.d.ts
 
 #   Optional: Ignore heavy local wallpapers since they are now on Cloudinary CDN
 public/wallpapers/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
