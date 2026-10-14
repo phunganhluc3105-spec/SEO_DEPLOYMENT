@@ -1,6 +1,5 @@
 import Link from 'next/link';
-import { Gamepad2, Search, FileText } from 'lucide-react';
-import SeoExplainerModal from './SeoExplainerModal';
+import { Gamepad2, FileText } from 'lucide-react';
 
 export default function Navbar() {
   return (
@@ -46,9 +45,6 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <SeoExplainerModal pageType="home" />
-        </div>
       </div>
     </header>
   );

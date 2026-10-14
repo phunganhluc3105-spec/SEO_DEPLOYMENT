@@ -5,7 +5,6 @@ import { notFound } from 'next/navigation';
 import { ChevronRight, ArrowLeft, Tag, Layers, Calendar, HardDrive, Maximize2 } from 'lucide-react';
 import { getWallpaperBySlug, getAllWallpapers, getRelatedWallpapers, getWallpaperUrl, getWallpaperFullUrl } from '@/lib/wallpapers';
 import DownloadActions from '@/components/DownloadActions';
-import SeoExplainerModal from '@/components/SeoExplainerModal';
 
 interface Props {
   params: {
@@ -23,7 +22,6 @@ export async function generateStaticParams() {
   }));
 }
 
-// 2. Dynamic Metadata (Trụ cột 2 trong content.md)
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const wallpaper = getWallpaperBySlug(params.slug);
 
@@ -41,7 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${wallpaper.title} (${wallpaper.resolution})`,
     description: wallpaper.description,
     keywords: [...wallpaper.tags, 'hình nền 4k', 'desktop background', wallpaper.game],
-    // Trụ cột 5: Canonical URL chống trùng lặp nội dung
+    
     alternates: {
       canonical: canonicalUrl,
     },
@@ -197,20 +195,6 @@ export default function WallpaperDetailPage({ params }: Props) {
                 {wallpaper.description}
               </p>
 
-              {/* SEO Pillar Live Inspector Card */}
-              <div className="seo-inspector-card">
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                  <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#38bdf8' }}>
-                    🔍 SEO Meta & Canonical URL của trang này:
-                  </h3>
-                  <SeoExplainerModal pageType="detail" title={wallpaper.title} canonicalUrl={canonicalUrl} schemaType="ImageObject" />
-                </div>
-                <div className="seo-code-snippet">
-                  &lt;link rel=&quot;canonical&quot; href=&quot;{canonicalUrl}&quot; /&gt;<br />
-                  &lt;meta property=&quot;og:title&quot; content=&quot;{wallpaper.title}&quot; /&gt;<br />
-                  &lt;script type=&quot;application/ld+json&quot;&gt; {`{"@type": "ImageObject", "name": "${wallpaper.title}"}`} &lt;/script&gt;
-                </div>
-              </div>
             </article>
           </section>
 
